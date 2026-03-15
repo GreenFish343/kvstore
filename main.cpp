@@ -124,7 +124,7 @@ bool processCommand(const std::string& line, Index& index) {
 
         appendToLog(key, value); //Write
         index.set(key, value); //Update
-        std::cout << "OK\n";
+        std::cout << "OK" << std::endl;
 
     } else if (command == "GET") {
         std::string key;
@@ -137,14 +137,14 @@ bool processCommand(const std::string& line, Index& index) {
 
         const std::string* value = index.get(key);
         if (value != nullptr) {
-            std::cout << *value << "\n";
+            std::cout << *value << std::endl;
         } else {
-            std::cout << "NULL\n";
+            std::cout << "" << std::endl;
         }
     } else if (command == "EXIT") {
         return false; //stop main loop
     } else {
-        std::cout << "ERROR: Unknown command '" << command << "'. Use SET, GET, or EXIT.\n";
+        std::cout << "ERROR: Unknown command '" << command << "'. Use SET, GET, or EXIT." << std::endl;
     }
     return true; // keep running
 }
