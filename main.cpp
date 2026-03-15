@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <filesystem>
 
 struct Node {
     std::string key;
@@ -56,7 +57,7 @@ public:
     }
 };
 
-const std::string DB_FILE = "data.db"; // name of the on-disk log file
+std::string DB_FILE;  // set dynamically in main()
 void appendToLog(const std::string& key, const std::string& value) {
     std::ofstream file(DB_FILE, std::ios::app); // append
     if (!file.is_open()) {
@@ -148,7 +149,9 @@ bool processCommand(const std::string& line, Index& index) {
     return true; // keep running
 }
 
-int main() {
+int main(int /*argc*/, char* argv[]) {
+    std::filesystem::path exePath = std::filesystem::canonical(argv[0]);
+    DB_FILE = (exePath.parent_path() / "data.db").string();
     Index index;
     replayLog(index);
     std::ios::sync_with_stdio(false); // Disable sync with C stdio for faster I/O (helpful for black-box testing)
