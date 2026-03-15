@@ -154,8 +154,6 @@ int main(int /*argc*/, char* argv[]) {
     DB_FILE = (exePath.parent_path() / "data.db").string();
     Index index;
     replayLog(index);
-    std::ios::sync_with_stdio(false); // Disable sync with C stdio for faster I/O (helpful for black-box testing)
-    std::cin.tie(nullptr);
     std::string line;
 
     while (std::getline(std::cin, line)) {
