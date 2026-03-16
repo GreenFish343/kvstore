@@ -106,5 +106,7 @@ kvstore/
 ```
 
 ## Gradebot Results
-
+First attempt:
 ![Gradebot Screenshot](gradebot_screenshot.png)
+After setup gradebot server:(openAI key require payment)
+![Gradebot Screenshot](gradebot_screenshot2.png)
